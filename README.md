@@ -18,7 +18,9 @@
   - Digital signatures?
   - Encryption
 
-* Examples
+# Examples
+
+The following code:
 
     (form :submit-url "/processme" :method "POST" :tags [loan application]
       (section :id "customer" :title "About you" 
