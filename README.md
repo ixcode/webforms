@@ -30,7 +30,7 @@ The following code:
   (section :id "customer" :title "Basic details" 
     (q:text "first-name" :max-chars 30 :valid-pattern "^[A..Z].*")
     (q:integer "age" 
-       (range [18 60] 
+       (v:range [18 60] 
          :summary "Please check the age you have entered" 
          :field "You must be aged between #{start} and #{end} to apply for this loan"))
     (q:text "reason-for-loan" :multiline)
