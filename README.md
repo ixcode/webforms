@@ -22,17 +22,20 @@
 
 The following code:
 
-    (form :submit-url "/processme" :method "POST" :tags [loan application]
-      (section :id "customer" :title "About you" 
-         (q:text :id "first-name" :max-chars 30 :valid-pattern "^[A..Z].*")
-         (q:integer :id "age" :range [0 120])
-         (q:text :id "biography" :multiline)
-          
-    ))
+```lisp
+(form :submit-url "/processme" :method "POST" :tags [loan application]
+  (section :id "customer" :title "About you" 
+    (q:text :id "first-name" :max-chars 30 :valid-pattern "^[A..Z].*")
+    (q:integer :id "age" :range [0 120])
+    (q:text :id "biography" :multiline)
+))
+```
 
 Will produce the following data structure:
 
+```lisp
     {
       :is [loan application form]
        
     }
+```
