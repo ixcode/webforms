@@ -23,19 +23,49 @@
 The following code:
 
 ```lisp
-(form :submit-url "/processme" :method "POST" :tags [loan application]
-  (section :id "customer" :title "About you" 
-    (q:text :id "first-name" :max-chars 30 :valid-pattern "^[A..Z].*")
-    (q:integer :id "age" :range [0 120])
-    (q:text :id "biography" :multiline)
+(defn check-name-and-age [data]
+   false)
+
+(form "about-you" :submit-url "/processme" :method "POST" :tags [loan application]
+  (section :id "customer" :title "Basic details" 
+    (q:text "first-name" :max-chars 30 :valid-pattern "^[A..Z].*")
+    (q:integer "age" 
+       (range [18 60] 
+         :summary "Please check the age you have entered" 
+         :field "You must be aged between #{start} and #{end} to apply for this loan"))
+    (q:text "reason-for-loan" :multiline)
+    (validate-with 'check-name-and-age "You must ented a valid #{first name|:customer :first-name} and #{age | :customer :age}")
 ))
+
+
 ```
 
 Will produce the following data structure:
 
 ```lisp
     {
-      :is [loan application form]
-       
+      :is [:loan :application :form]
+      :validation-messages [
+        { :message "You must ented a valid #{first name|:customer :first-name} and #{age | :customer :age}"}
+        { :message "Please check the age you have entered" :link-to [:customer :age]}
+      ]
+      :customer {
+        :first-name {:value "Johnny"}
+        :age {:value 340 :validation-messages ["You must be aged between 18 and 160 to apply for this loan"]}
+        :reason-for-loan {:value "Some long winded diatribe about why I needs ca$h!"}
+      }
     }
+```
+
+You can do things with this data structure:
+
+```lisp
+    (field-value :customer :age)    
+    -> 340
+```
+
+To chain forms together:
+
+```lisp
+(form-sequence :loan-details :about-you :current-financials)
 ```
