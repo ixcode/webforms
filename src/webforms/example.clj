@@ -1,7 +1,9 @@
-(ns webforms.example)
+(ns webforms.example
+  (:use [platform.collections :as ix :only [map-with-default]]))
 
 (defn q:text [id & more]
-  (let ))
+  (let [params (ix/map-with-default more)]
+    (format "My id is: %s and my params are: %s" id (with-out-str (pr params)))))
 
 (form "about-you" :submit-url "/processme" :method "POST" :tags [loan application]
   (section :id "customer" :title "Basic details" 
