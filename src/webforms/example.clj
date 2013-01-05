@@ -2,8 +2,8 @@
   (:use [platform.collections :as ix :only [map-with-default]]))
 
 (defn q:text [id & more]
-  (let [params (ix/map-with-default more)]
-    (format "My id is: %s and my params are: %s" id (with-out-str (pr params)))))
+  (let [{:keys [a b c]} (ix/map-with-default more)]
+    (format "Id: %s :a %s :b %s :c %s" id a b c)))
 
 (form "about-you" :submit-url "/processme" :method "POST" :tags [loan application]
   (section :id "customer" :title "Basic details" 
