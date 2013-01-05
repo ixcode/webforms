@@ -22,7 +22,7 @@
 
 The following code:
 
-```lisp
+```clojure
 (defn check-name-and-age [data]
    false)
 
@@ -42,7 +42,7 @@ The following code:
 
 Will produce the following data structure:
 
-```lisp
+```clojure
     {
       :is [:loan :application :form]
       :validation-messages [
@@ -59,13 +59,13 @@ Will produce the following data structure:
 
 You can do things with this data structure:
 
-```lisp
+```clojure
     (field-value :customer :age)    
     -> 340
 ```
 
 To chain forms together:
 
-```lisp
+```clojure
 (form-sequence :loan-details :about-you :current-financials)
 ```
