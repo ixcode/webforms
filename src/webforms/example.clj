@@ -23,5 +23,6 @@
                            :reason-for-loan {:value "Some long winded diatribe about why I needs ca$h!"}
                            }})
 
-;;(get-in form-data [:customer :age :value])
+;;(-> form-data :customer :age isvalid?)
+;;(get-in form-data [:customer :age :validation-message])
 
