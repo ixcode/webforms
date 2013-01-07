@@ -1,11 +1,6 @@
 (ns webforms.example
-  (:use [platform.collections :as ix :only [map-with-default]]))
+  (:use [webforms.components :only [q:text]]))
 
-(defn q:text [id & more]
-  (let [{:keys [max-chars valid-pattern multiline]} (ix/map-with-default more)]
-    (if multiline
-      (format "<textarea id='%s' name='%s' maxlength='%s'></textarea>" id id max-chars)
-      (format "<input id='%s' name='%s' type='text' maxlength='%s'></input>" id id max-chars))))
 
 (form "about-you" :submit-url "/processme" :method "POST" :tags [loan application]
   (section :id "customer" :title "Basic details" 
