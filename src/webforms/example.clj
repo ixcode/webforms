@@ -23,6 +23,11 @@
                            :reason-for-loan {:value "Some long winded diatribe about why I needs ca$h!"}
                            }})
 
-;;(-> form-data :customer :age isvalid?)
+(defn say-hello [name] 
+ (println (format "Hello %s" "duncan")))
+
+(:customer form-data)
+
+(-> form-data :validation-messages (get 1))
 ;;(get-in form-data [:customer :age :validation-message])
 

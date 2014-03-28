@@ -37,12 +37,22 @@
 
 ;; TODO - we should be able to use multimethods here, keyed on the type from :is
 (defn html-for [form]
-  (let [{:keys [name fields]} form]
-    (apply str (map html-field (-> about-you-form :fields)))))
+  (let [{:keys [fields]} form]
+    (apply str (map html-field fields))))
 
-(println  (html-for about-you-form))
+;;(println  (html-for about-you-form))
 
+(defn read-form-data [form-data form]
+  )
 
+(:0 [1 2 3])
+
+:0 -> (get 0)
+
+(as-int :0)
+
+;; :contact-details#0:first-name
+;; :
 
 ;;(path-to {:id "foo" :section "ho"})
 ;;(path-to (-> about-you-form :fields :first-name))
